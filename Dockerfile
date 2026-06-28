@@ -22,9 +22,6 @@ ENV PHP_FPM_SECURITY_LIMIT_EXTENSIONS=".php"
 WORKDIR /var/www/html
 
 # Permissions
-RUN apk add --no-cache curl unzip git
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN chown -R nginx:nginx /var/www/html
 
 CMD ["/start.sh"]
