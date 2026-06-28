@@ -1,8 +1,8 @@
 <script setup lang="ts">
-    import AppHeaderLayout from "@/layouts/app/guestHeader/GuestHeader.vue";
-    import AppFooterLayout from "@/layouts/app/AppFooterLayout.vue";
-    import GuestSidebar from "@/layouts/app/guestSidebar/Sidebar.vue"
-    import ProjectModal from "../app/modal/ProjectModal.vue";
+    import AppHeader from "@/layouts/app/Header/AppHeader.vue";
+    import AppFooterLayout from "@/layouts/app/Footer/AppFooterLayout.vue";
+    import GuestSidebar from "@/layouts/app/Sidebar/Sidebar.vue"
+    import ProjectModal from "@/layouts/app/modal/ProjectModal.vue";
     import { useUI } from "@/stores/uiStores";
 
     const ui = useUI();
@@ -27,9 +27,9 @@
 
         <!-- //Main Content of project -->
         <main class="main flex-1 bg-black flex flex-col">
-            <AppHeaderLayout />
+            <AppHeader />
                 <slot />
-                <AppFooterLayout />
+            <AppFooterLayout />
         </main>
     </div>
 </template>
