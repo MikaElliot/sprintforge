@@ -1,8 +1,7 @@
 FROM richarvey/nginx-php-fpm:latest
 
-# Install Node.js 20
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs
+# Install Node.js
+RUN apk add --no-cache nodejs npm
 
 COPY . .
 
