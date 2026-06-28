@@ -1,0 +1,61 @@
+@theme
+{
+    /* // Main theme */
+    --color-brand: #401f64;
+    --color-brand-dark: #401f64;
+
+    /* //Mode */
+    --color-mode-1: #fe1234;
+    --color-mode-2: #fe1234;
+    --color-mode-3: #fe1234;
+    --color-mode-4: #fe1234;
+    --color-mode-1-dark: #fe1234;
+
+    /* //Backgrounds */
+    --color-layer-1: #f8fafc;
+    --color-layer-2: #f8fafc;
+    --color-layer-1-dark: #191919;
+    --color-layer-2-dark: #0f0f0f;
+    --color-surface: #ffffff;
+    --color-surface-dark: #111827;
+
+    /* //text */
+    --color-text: #0f172a;
+    --color-text-dark: #e5e7eb;
+    --color-muted: #64748b;
+    --color-muted-dark: #e5e7eb;
+    
+    /* //Status */
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+
+    /* //Borders */
+    --color-border: #e2e8f0;
+    --color-border-dark: #1f2937;
+
+    /* //Shadows */
+    --shadow-full-sm: 0px 0px 3px;
+    --shadow-full-md: 0px 0px 5px;
+    --shadow-full-lg: 0px 0px 8px;
+    --shadow-full-xl: 0px 0px 10px;
+    --shadow-soft: 0 10px 30px rgba(0,0,0,.08);
+    --shadow-dark-soft: 0 10px 30px rgba(0,0,0, .35);
+
+    /* //Fonts */
+    --font-basis: sans-serif;
+    --font-design: serif;
+}
+
+.dark
+{
+    --color-brand: var(--color-brand-dark);
+    --color-mode-1: var(--color-mode-1-dark);
+    --color-layer-1: var(--color-layer-1-dark);
+    --color-layer-2: var(--color-layer-2-dark);
+    --color-surface: var(--color-surface-dark);
+    --color-text: var(--color-text-dark);
+    --color-muted: var(--color-muted-dark);
+    --color-border: var(--color-border-dark);
+    --shadow-soft: var(--shadow-dark-soft);
+}
