@@ -1,13 +1,14 @@
 FROM richarvey/nginx-php-fpm:3.1.6
 
-# Installation de Node.js + npm
-RUN apk add --no-cache nodejs npm
+# Node + dépendances système
+RUN apk add --no-cache nodejs npm curl unzip git
 
-# Copie du code
-COPY . /var/www/html
+WORKDIR /var/www/html
 
-# Variables d'environnement
-ENV SKIP_COMPOSER=1
+# Copier code
+COPY . .
+
+# Env Laravel
 ENV WEBROOT=/var/www/html/public
 ENV PHP_ERRORS_STDERR=1
 ENV RUN_SCRIPTS=1
@@ -19,9 +20,15 @@ ENV LOG_CHANNEL=stderr
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PHP_FPM_SECURITY_LIMIT_EXTENSIONS=".php"
 
-WORKDIR /var/www/html
+# Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Permissions
-RUN chown -R nginx:nginx /var/www/html
+# Frontend build
+RUN npm install
+RUN npm run build
+
+# Permissions correctes (IMPORTANT: www-data, pas nginx)
+RUN chown -R www-data:www-data /var/www/html
 
 CMD ["/start.sh"]
