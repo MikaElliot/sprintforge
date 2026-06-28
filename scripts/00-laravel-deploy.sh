@@ -1,17 +1,25 @@
 #!/usr/bin/env bash
 
-echo "Running composer"
-composer install --no-dev --working-dir=/var/www/html
+echo "=== Laravel + Vite Deploy Script Started ==="
 
-echo "Installing npm & building assets..."
-npm install
+cd /var/www/html
+
+echo "→ Composer dependencies..."
+composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+echo "→ NPM clean install + Vite build..."
+npm ci --omit=dev
 npm run build
 
-echo "Caching config..."
+echo "→ Laravel cache optimizations..."
 php artisan config:cache
-
-echo "Caching routes..."
 php artisan route:cache
+php artisan view:cache
 
-echo "Running migrations..."
+echo "→ Storage symbolic link..."
+php artisan storage:link
+
+echo "→ Database migrations..."
 php artisan migrate --force
+
+echo "=== Deployment completed successfully ==="
