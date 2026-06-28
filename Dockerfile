@@ -21,8 +21,12 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PHP_FPM_SECURITY_LIMIT_EXTENSIONS=".php"
 
 # Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN apk add --no-cache git unzip curl icu-dev oniguruma-dev libzip-dev
+
+RUN curl -sS https://getcomposer.org/installer | php -- \
+    --install-dir=/usr/local/bin --filename=composer
+
+RUN composer install --no-dev --optimize-autoloader --no-interaction -vvv
 
 # Frontend build
 RUN npm install
